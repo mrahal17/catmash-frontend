@@ -1,5 +1,5 @@
 export interface Cat {
     id: string,
-    imageUrl: string,
+    url: string,
     numberOfVotes: number
 }

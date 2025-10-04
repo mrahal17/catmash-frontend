@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GeneralRankingComponent } from './general-ranking.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CatService } from '../service/cat.service';
 
 describe('GeneralRankingComponent', () => {
   let component: GeneralRankingComponent;
@@ -8,7 +9,8 @@ describe('GeneralRankingComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [GeneralRankingComponent]
+      imports: [GeneralRankingComponent, HttpClientTestingModule],
+      providers: [CatService]
     });
     fixture = TestBed.createComponent(GeneralRankingComponent);
     component = fixture.componentInstance;

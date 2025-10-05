@@ -1,0 +1,85 @@
+.ranking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.podium {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.podium-spot {
+  text-align: center;
+  position: relative;
+}
+
+.podium-spot .rank {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: gold;
+  color: black;
+  border-radius: 50%;
+  padding: 0.5rem 0.8rem;
+  font-weight: bold;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.podium-spot.first-spot {
+  transform: scale(1.2);
+  z-index: 2;
+}
+.podium-spot.second-spot {
+  transform: translateY(10px);
+}
+.podium-spot.third-spot {
+  transform: translateY(15px);
+}
+
+.cat-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ccc;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.id {
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+.bottom {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1.5rem;
+  width: 90%;
+  max-width: 800px;
+}
+
+.cat-card {
+  text-align: center;
+  background: #f9f9f9;
+  width: fit-content;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.cat-card:hover {
+  transform: translateY(-4px);
+}
+
+.cat-card .rank {
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 0.5rem;
+}

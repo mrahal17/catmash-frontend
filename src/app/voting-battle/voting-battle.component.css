@@ -1,0 +1,80 @@
+.battle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f18d4b;
+  color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.battle-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  margin-top: 0;
+  text-align: center;
+}
+
+.battle-cards {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.battle-card {
+  background: white;
+  color: black;
+  border-radius: 1rem;
+  width: 220px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.battle-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.vote-button {
+  background: #f18d4bac;
+  border: none;
+  border-radius: 1rem;;
+  padding: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.vote-button:hover{
+  background: #f18d4b;
+}
+
+.image-wrapper {
+  width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.info {
+  margin-top: 0.75rem;
+}
+
+.id {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.votes {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}

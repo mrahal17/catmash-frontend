@@ -19,4 +19,9 @@ export class CatService {
   getAllRanked(): Observable<Cat[]> {
     return this.http.get<Cat[]>(this.apiUrl + '/ranked');
   }
+
+  incrementNumberOfVotes(id: String): Observable<string> {
+    const url = `${this.apiUrl}/${id}/number-of-votes`;
+    return this.http.patch(url, null, { responseType: 'text' });
+  }
 }

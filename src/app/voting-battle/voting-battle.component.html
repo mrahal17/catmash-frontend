@@ -23,3 +23,15 @@
     </div>
   </div>
 </div>
+
+<div class="overlay" *ngIf="showEndOfBattleSessionMessage">
+  <div class="popup">
+    <h2>Vous avez voté sur l'ensemble des chats de la compétition !</h2>
+    <p>Que souhaitez-vous faire maintenant ?</p>
+
+    <div class="buttons">
+      <button (click)="goToRanking()">Accéder au classement global</button>
+      <button (click)="resumeInfiniteMode()">Continuer en mode infini</button>
+    </div>
+  </div>
+</div>

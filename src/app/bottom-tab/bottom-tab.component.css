@@ -1,0 +1,34 @@
+.bottom-tab {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 100;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.counter {
+  margin: 0;
+  font-size: 15px;
+  color: #333;
+  text-align: center;
+}
+
+.redirect-link {
+  font-weight: 500;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.redirect-link:hover {
+  text-decoration: underline;
+}

@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Cat } from '../model/cat.model';
 import { CatService } from '../service/cat.service';
+import { BottomTabComponent } from '../bottom-tab/bottom-tab.component';
 
 @Component({
   selector: 'app-general-ranking',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BottomTabComponent],
   templateUrl: './general-ranking.component.html',
   styleUrls: ['./general-ranking.component.css']
 })
@@ -16,6 +17,9 @@ export class GeneralRankingComponent {
   secondSpot: Cat | null = null;
   thirdSpot: Cat | null = null;
   bottomSpots: Cat[] = [];
+
+  bottomTabMessage: string = "Revenir au vote";
+  bottomTabRedirectionPath: string  = "/voting-battle";
 
   constructor(private catService: CatService) {}
 

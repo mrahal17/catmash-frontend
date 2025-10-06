@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { BattleCounterService } from '../service/battle-counter.service';
 import { CatService } from '../service/cat.service';
 import { Router } from '@angular/router';
+import { BottomTabComponent } from '../bottom-tab/bottom-tab.component';
 
 @Component({
   selector: 'app-voting-battle',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, BottomTabComponent],
   templateUrl: './voting-battle.component.html',
   styleUrl: './voting-battle.component.css'
 })
@@ -19,6 +20,9 @@ export class VotingBattleComponent {
   contenders: Cat[] = [];
   showEndOfBattleSessionMessage: boolean = false;
   infiniteMode: boolean = false;
+
+  bottomTabMessage: string = "Voir classement des chats";
+  bottomTabRedirectionPath: string = "/general-ranking";
 
   constructor(private catService: CatService, private router: Router, private battleCounterService: BattleCounterService) {}
 

@@ -5,11 +5,12 @@ import { BattleCounterService } from '../service/battle-counter.service';
 import { CatService } from '../service/cat.service';
 import { Router } from '@angular/router';
 import { BottomTabComponent } from '../bottom-tab/bottom-tab.component';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-voting-battle',
   standalone: true,
-  imports: [CommonModule, BottomTabComponent],
+  imports: [CommonModule, BottomTabComponent, HeaderComponent],
   templateUrl: './voting-battle.component.html',
   styleUrl: './voting-battle.component.css'
 })

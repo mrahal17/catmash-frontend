@@ -12,21 +12,19 @@ import { CatService } from '../service/cat.service';
 })
 
 export class GeneralRankingComponent {
-  firstSpotCat: Cat | null = null;
-  secondSpotCat: Cat | null = null;
-  thirdSpotCat: Cat | null = null;
-  bottomSpotsCats: Cat[] = [];
+  firstSpot: Cat | null = null;
+  secondSpot: Cat | null = null;
+  thirdSpot: Cat | null = null;
+  bottomSpots: Cat[] = [];
 
   constructor(private catService: CatService) {}
 
   ngOnInit() {
     this.catService.getAllRanked().subscribe(data => {
-      this.firstSpotCat = data[0];
-      this.secondSpotCat = data[1];
-      this.thirdSpotCat = data[2];
-      this.bottomSpotsCats = data.slice(3);
+      this.firstSpot = data[0];
+      this.secondSpot = data[1];
+      this.thirdSpot = data[2];
+      this.bottomSpots = data.slice(3);
     });
   }
-
-  
 }

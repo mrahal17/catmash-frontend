@@ -2,25 +2,25 @@
   <div class="podium">
     <div class="podium-spot second-spot">
       <div class="rank">2</div>
-      <img [src]="secondSpotCat?.url" alt="Cat 2" class="cat-photo" />
-      <div class="id">{{ secondSpotCat?.id }}</div>
+      <img [src]="secondSpot?.url" alt="Cat 2" class="cat-photo" />
+      <div class="id">{{ secondSpot?.id }}</div>
     </div>
 
     <div class="podium-spot first-spot">
       <div class="rank">1</div>
-      <img [src]="firstSpotCat?.url" alt="Cat 1" class="cat-photo" />
-      <div class="id">{{ firstSpotCat?.id }}</div>
+      <img [src]="firstSpot?.url" alt="Cat 1" class="cat-photo" />
+      <div class="id">{{ firstSpot?.id }}</div>
     </div>
 
     <div class="podium-spot third-spot">
       <div class="rank">3</div>
-      <img [src]="thirdSpotCat?.url" alt="Cat 3" class="cat-photo" />
-      <div class="id">{{ thirdSpotCat?.id }}</div>
+      <img [src]="thirdSpot?.url" alt="Cat 3" class="cat-photo" />
+      <div class="id">{{ thirdSpot?.id }}</div>
     </div>
   </div>
 
   <div class="bottom">
-    <div class="cat-card" *ngFor="let cat of bottomSpotsCats; let rank = index">
+    <div class="cat-card" *ngFor="let cat of bottomSpots; let rank = index">
       <div class="rank">{{ rank + 4 }}</div>
       <img [src]="cat.url" alt="{{ cat.id }}" class="cat-photo" />
       <div class="id">{{ cat.id }}</div>

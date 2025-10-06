@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Cat } from '../model/cat.model';
 import { CommonModule } from '@angular/common';
+import { BattleCounterService } from '../service/battle-counter.service';
 import { CatService } from '../service/cat.service';
 import { Router } from '@angular/router';
 
@@ -19,7 +20,7 @@ export class VotingBattleComponent {
   showEndOfBattleSessionMessage: boolean = false;
   infiniteMode: boolean = false;
 
-  constructor(private catService: CatService, private router: Router) {}
+  constructor(private catService: CatService, private router: Router, private battleCounterService: BattleCounterService) {}
 
   ngOnInit() {
     this.setUpBattleSession();
@@ -29,6 +30,7 @@ export class VotingBattleComponent {
     this.catService.getAll().subscribe(data => {
       if (data.length >= 2) {
         this.contenders = data;
+        this.shuffleContenders();
         if (this.infiniteMode) this.handleNextBattleInfiniteMode();
         else this.handleNextBattleFiniteMode();
       }
@@ -43,7 +45,6 @@ export class VotingBattleComponent {
 
   handleNextBattleFiniteMode() {
     if (this.contenders.length >= 2) {
-      this.shuffleContenders();
       this.firstContender = this.contenders.pop()!;
       this.secondContender = this.contenders.pop()!;
     } else {
@@ -56,9 +57,10 @@ export class VotingBattleComponent {
   }
 
   registerVote(id: string | undefined) {
-    if (!id) { return; }
+    if (!id) return;
     this.catService.incrementNumberOfVotes(id).subscribe({
       next: () => {
+        this.battleCounterService.incrementBattleCount();
         if (this.infiniteMode) this.handleNextBattleInfiniteMode();
         else this.handleNextBattleFiniteMode();
       }

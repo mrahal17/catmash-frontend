@@ -6,11 +6,13 @@ import { Router } from '@angular/router';
 import { Cat } from '../model/cat.model';
 import { HttpClientModule } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
+import { BattleCounterService } from '../service/battle-counter.service';
 
 describe('VotingBattleComponent', () => {
   let component: VotingBattleComponent;
   let fixture: ComponentFixture<VotingBattleComponent>;
   let catServiceSpy: jasmine.SpyObj<CatService>;
+  let battleCounterServiceSpy: jasmine.SpyObj<BattleCounterService>;
   let routerSpy: jasmine.SpyObj<Router>;
 
   const mockCats: Cat[] = [
@@ -21,12 +23,14 @@ describe('VotingBattleComponent', () => {
 
   beforeEach(async () => {
     catServiceSpy = jasmine.createSpyObj('CatService', ['getAll', 'incrementNumberOfVotes']);
+    battleCounterServiceSpy = jasmine.createSpyObj('BattleCounterService', ['incrementBattleCount']);
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
       imports: [VotingBattleComponent, HttpClientModule],
       providers: [
         { provide: CatService, useValue: catServiceSpy },
+        { provide: BattleCounterService, useValue: battleCounterServiceSpy },
         { provide: Router, useValue: routerSpy }
       ]
     }).compileComponents();
@@ -126,14 +130,22 @@ describe('VotingBattleComponent', () => {
     expect(spyRegister).toHaveBeenCalledWith(component.secondContender?.id);
   });
 
-  it('should call incrementNumberOfVotes in the service when calling registerVote', () => {
-    catServiceSpy.getAll.and.returnValue(of(mockCats));
+  it('should call incrementNumberOfVotes when calling registerVote', () => {
+    const mockId = '123';
     catServiceSpy.incrementNumberOfVotes.and.returnValue(of(''));
 
-    fixture.detectChanges();
-    component.registerVote(mockCats[0].id);
+    component.registerVote(mockId);
 
-    expect(catServiceSpy.incrementNumberOfVotes).toHaveBeenCalledWith(mockCats[0].id);
+    expect(catServiceSpy.incrementNumberOfVotes).toHaveBeenCalledWith(mockId);
+  });
+
+  it('should call incrementBattleCount when calling registerVote', () => {
+    const mockId = '123';
+    catServiceSpy.incrementNumberOfVotes.and.returnValue(of(''));
+
+    component.registerVote(mockId);
+
+    expect(battleCounterServiceSpy.incrementBattleCount).toHaveBeenCalled();
   });
 
   it('should display message window when showEndOfBattleSessionMessage is true', () => {

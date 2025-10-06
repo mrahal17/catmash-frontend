@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Cat } from '../model/cat.model';
 import { CatService } from '../service/cat.service';
 import { BottomTabComponent } from '../bottom-tab/bottom-tab.component';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-general-ranking',
   standalone: true,
-  imports: [CommonModule, BottomTabComponent],
+  imports: [CommonModule, BottomTabComponent, HeaderComponent],
   templateUrl: './general-ranking.component.html',
   styleUrls: ['./general-ranking.component.css']
 })

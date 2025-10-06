@@ -1,0 +1,37 @@
+<div class="battle-container">
+  <h2 class="battle-title">Qui est le plus mignon de tous ?</h2>
+
+  <div class="battle-cards">
+    <div class="battle-card left">
+      <div class="image-wrapper">
+        <img [src]="firstContender?.url" alt="Cat 1" />
+      </div>
+      <div class="info">
+        <p class="name">Chat 1</p>
+      </div>
+      <button class="vote-button" (click)="registerVote(firstContender?.id)">Voter</button>
+    </div>
+
+    <div class="battle-card right">
+      <div class="image-wrapper">
+        <img [src]="secondContender?.url" alt="Cat 2" />
+      </div>
+      <div class="info">
+        <p class="name">Chat 2</p>
+      </div>
+      <button class="vote-button" (click)="registerVote(secondContender?.id)">Voter</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="showEndOfBattleSessionMessage">
+  <div class="popup">
+    <h2>Vous avez voté sur l'ensemble des chats de la compétition !</h2>
+    <p>Que souhaitez-vous faire maintenant ?</p>
+
+    <div class="buttons">
+      <button (click)="goToRanking()">Accéder au classement global</button>
+      <button (click)="resumeInfiniteMode()">Continuer en mode infini</button>
+    </div>
+  </div>
+</div>

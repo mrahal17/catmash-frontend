@@ -87,7 +87,10 @@
 }
 
 .id {
-  font-weight: 500;
+  font-weight: 300;
+  font-family: "SUSE Mono";
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 .bottom {
@@ -100,7 +103,7 @@
 .cat-card {
   text-align: center;
   background: #f9f9f9;
-  padding: 1rem;
+  padding: 15px;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;

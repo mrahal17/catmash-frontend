@@ -1,8 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
 html, body {
   font-family: "Fredoka", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-variation-settings: "wdth" 100;
+}
+
+:root {
+  --light-orange: #feb596;
+  --light-green: rgb(121, 213, 109);;
 }

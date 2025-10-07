@@ -1,16 +1,41 @@
+.ranking-title {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  text-align: center;
+  border-radius: 20px;
+  padding: 1rem;
+  background-color: rgb(121, 213, 109);
+  justify-self: center;
+  width: fit-content;
+}
+
 .ranking-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  padding-top: 20px;
+  padding: 25px;
+  width: fit-content;
+  justify-self: center;
+  background-color: #f7a16b;
+  border-radius: 20px;
 }
 
 .podium {
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 2.5rem;
+  gap: 3rem;
+}
+
+.podium-info {
+  padding: 8px;
+  border-radius: 12px;
+  background-color: #f3b9cc;
+  width: fit-content;
+  justify-self: center;
 }
 
 .podium-spot {
@@ -45,22 +70,28 @@
 .cat-photo {
   width: 120px;
   height: 120px;
-  border-radius: 25%;
-  object-fit: cover;
-  border: 3px solid #ccc;
+  object-fit: contain;
+}
+
+.podium .cat-photo {
+  background-color: #f9f9f9;
+  border-radius: 30%;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
+.bottom .cat-photo {
+  border-radius: 12px;
+}
+
 .id {
-  margin-top: 0.5rem;
   font-weight: 500;
 }
 
 .bottom {
   display: grid;
   grid-template-columns: repeat(4, 1fr);;
-  gap: 2rem;
-  max-width: 800px;
+  gap: 1rem;
+  max-width: 1000px;
 }
 
 .cat-card {

@@ -1,22 +1,29 @@
 <app-header/>
+<h2 class="ranking-title">Classement général</h2>
 <div class="ranking-container">
   <div class="podium">
     <div class="podium-spot second-spot">
       <div class="rank">2</div>
       <img [src]="secondSpot?.url" alt="Cat 2" class="cat-photo" />
-      <div class="id">{{ secondSpot?.id }}</div>
+      <div class="podium-info">
+        <div class="id">Chat {{ secondSpot?.id }}</div>
+      </div>
     </div>
 
     <div class="podium-spot first-spot">
       <div class="rank">1</div>
       <img [src]="firstSpot?.url" alt="Cat 1" class="cat-photo" />
-      <div class="id">{{ firstSpot?.id }}</div>
+      <div class="podium-info">
+        <div class="id">Chat {{ firstSpot?.id }}</div>
+      </div>
     </div>
 
     <div class="podium-spot third-spot">
       <div class="rank">3</div>
       <img [src]="thirdSpot?.url" alt="Cat 3" class="cat-photo" />
-      <div class="id">{{ thirdSpot?.id }}</div>
+      <div class="podium-info">
+        <div class="id">Chat {{ thirdSpot?.id }}</div>
+      </div>
     </div>
   </div>
 
@@ -24,7 +31,7 @@
     <div class="cat-card" *ngFor="let cat of bottomSpots; let rank = index">
       <div class="rank">{{ rank + 4 }}</div>
       <img [src]="cat.url" alt="{{ cat.id }}" class="cat-photo" />
-      <div class="id">{{ cat.id }}</div>
+      <div class="id">Chat {{ cat.id }}</div>
     </div>
   </div>
 </div>

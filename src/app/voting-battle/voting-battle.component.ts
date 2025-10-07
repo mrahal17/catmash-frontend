@@ -22,7 +22,7 @@ export class VotingBattleComponent {
   showEndOfBattleSessionMessage: boolean = false;
   infiniteMode: boolean = false;
 
-  bottomTabMessage: string = "Voir classement des chats";
+  bottomTabMessage: string = "Voir le classement des chats";
   bottomTabRedirectionPath: string = "/general-ranking";
 
   constructor(private catService: CatService, private router: Router, private battleCounterService: BattleCounterService) {}

@@ -1,16 +1,49 @@
+:host {
+  display: block;
+  background: url('../../assets/backgrounds/background-ranking.png');
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.ranking-title {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  text-align: center;
+  border-radius: 20px;
+  padding: 1rem;
+  background-color: var(--light-green);
+  justify-self: center;
+  width: fit-content;
+}
+
 .ranking-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  font-family: 'Poppins', sans-serif;
+  padding: 25px;
+  width: fit-content;
+  justify-self: center;
+  background-color: var(--light-orange);
+  border-radius: 20px;
 }
 
 .podium {
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 2rem;
+  gap: 3rem;
+}
+
+.podium-info {
+  padding: 8px;
+  border-radius: 12px;
+  background-color: #ffc3d7;
+  width: fit-content;
+  max-width: 25rem;
+  justify-self: center;
 }
 
 .podium-spot {
@@ -35,40 +68,49 @@
   transform: scale(1.2);
   z-index: 2;
 }
+
 .podium-spot.second-spot {
   transform: translateY(10px);
 }
+
 .podium-spot.third-spot {
-  transform: translateY(15px);
+  transform: translateY(10px);
 }
 
 .cat-photo {
   width: 120px;
   height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #ccc;
+  object-fit: contain;
+}
+
+.podium .cat-photo {
+  background-color: #f9f9f9;
+  border-radius: 30%;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
+.bottom .cat-photo {
+  border-radius: 12px;
+}
+
 .id {
-  margin-top: 0.5rem;
-  font-weight: 500;
+  font-weight: 300;
+  font-family: "SUSE Mono";
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 .bottom {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(4, 1fr);;
   gap: 1.5rem;
-  width: 90%;
-  max-width: 800px;
+  max-width: 1000px;
 }
 
 .cat-card {
   text-align: center;
   background: #f9f9f9;
-  width: fit-content;
-  padding: 1rem;
+  padding: 15px;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;

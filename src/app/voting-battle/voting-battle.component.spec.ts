@@ -50,24 +50,31 @@ describe('VotingBattleComponent', () => {
     expect(catServiceSpy.getAll).toHaveBeenCalled();
   });
 
-  it('should call handleNextBattleFiniteMode when calling setUpBattleSession in finite mode', () => {
+  it('should call handleNextBattle when calling setUpBattleSession in finite mode', () => {
     catServiceSpy.getAll.and.returnValue(of(mockCats));
-    const spyHandleNextBattle = spyOn(component, 'handleNextBattleFiniteMode');
+    const spyHandleNextBattle = spyOn(component, 'handleNextBattle');
 
-    component.infiniteMode = false;
     component.setUpBattleSession();
 
     expect(spyHandleNextBattle).toHaveBeenCalled();
   });
 
+  it('should call handleNextBattleFiniteMode when calling handleNextBattle in finite mode', () => {
+    const spyHandleNextBattleFiniteMode = spyOn(component, 'handleNextBattleFiniteMode');
+
+    component.infiniteMode = false;
+    component.handleNextBattle();
+
+    expect(spyHandleNextBattleFiniteMode).toHaveBeenCalled();
+  });
+
   it('should call handleNextBattleInfiniteMode when calling setUpBattleSession in infinite mode', () => {
-    catServiceSpy.getAll.and.returnValue(of(mockCats));
-    const spyHandleNextBattle = spyOn(component, 'handleNextBattleInfiniteMode');
+    const spyHandleNextBattleInfiniteMode = spyOn(component, 'handleNextBattleInfiniteMode');
 
     component.infiniteMode = true;
-    component.setUpBattleSession();
+    component.handleNextBattle();
 
-    expect(spyHandleNextBattle).toHaveBeenCalled();
+    expect(spyHandleNextBattleInfiniteMode).toHaveBeenCalled();
   });
 
   it('should set current contenders when calling handleNextBattleFiniteMode', () => {

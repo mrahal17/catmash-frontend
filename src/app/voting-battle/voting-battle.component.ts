@@ -36,10 +36,14 @@ export class VotingBattleComponent {
       if (data.length >= 2) {
         this.contenders = data;
         this.shuffleContenders();
-        if (this.infiniteMode) this.handleNextBattleInfiniteMode();
-        else this.handleNextBattleFiniteMode();
+        this.handleNextBattle();
       }
     });
+  }
+
+  handleNextBattle() {
+    if (this.infiniteMode) this.handleNextBattleInfiniteMode();
+    else this.handleNextBattleFiniteMode();
   }
 
   handleNextBattleInfiniteMode() {
@@ -63,12 +67,9 @@ export class VotingBattleComponent {
 
   registerVote(id: string | undefined) {
     if (!id) return;
-    this.catService.incrementNumberOfVotes(id).subscribe({
-      next: () => {
+    this.catService.incrementNumberOfVotes(id).subscribe(() => {
         this.battleCounterService.incrementBattleCount();
-        if (this.infiniteMode) this.handleNextBattleInfiniteMode();
-        else this.handleNextBattleFiniteMode();
-      }
+        this.handleNextBattle();
     });
   }
 

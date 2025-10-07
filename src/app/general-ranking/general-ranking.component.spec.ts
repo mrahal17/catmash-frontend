@@ -72,7 +72,7 @@ describe('GeneralRankingComponent', () => {
     expect(idDiv).not.toBeNull();
 
     const firstSpotCatId = idDiv?.textContent?.trim();
-    expect(firstSpotCatId).toBe(mockCats[0]['id']);
+    expect(firstSpotCatId).toBe('Chat ' + mockCats[0]['id']);
   });
 
   it('should display the second cat on the second spot', () => {
@@ -87,7 +87,7 @@ describe('GeneralRankingComponent', () => {
     expect(idDiv).not.toBeNull();
 
     const secondSpotCatId = idDiv?.textContent?.trim();
-    expect(secondSpotCatId).toBe(mockCats[1]['id']);
+    expect(secondSpotCatId).toBe('Chat ' + mockCats[1]['id']);
   });
 
   it('should display the third cat on the third spot', () => {
@@ -102,6 +102,6 @@ describe('GeneralRankingComponent', () => {
     expect(idDiv).not.toBeNull();
 
     const thirdSpotCatId = idDiv?.textContent?.trim();
-    expect(thirdSpotCatId).toBe(mockCats[2]['id']);
+    expect(thirdSpotCatId).toBe('Chat ' + mockCats[2]['id']);
   });
 });

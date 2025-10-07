@@ -1,3 +1,10 @@
+:host {
+  display: block;
+  background: url('../../assets/backgrounds/background-ranking.png');
+  min-height: 100vh;
+  padding: 2rem;
+}
+
 .ranking-title {
   font-weight: 700;
   margin-bottom: 1rem;

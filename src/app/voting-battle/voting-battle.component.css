@@ -62,6 +62,7 @@
 }
 
 .vote-button:hover{
+  cursor: url('../../assets/cursors/cursor-click.png'), pointer;
   background: #f18d4b;
 }
 
@@ -144,5 +145,6 @@ button {
 }
 
 button:hover {
+  cursor: url('../../assets/cursors/cursor-click.png'), pointer;
   background-color: #ffa726;
 }

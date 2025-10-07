@@ -30,4 +30,5 @@
 
 .redirect-link:hover {
   text-decoration: underline;
+  cursor: url('../../assets/cursors/cursor-click.png'), pointer;
 }

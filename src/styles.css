@@ -1,3 +1,9 @@
+body {
+  cursor: url('assets/cursors/cursor-point.png'), auto;
+}
+button, a, [role="button"], .clickable {
+  cursor: url('assets/cursors/cursor-click.png'), pointer;
+}
 html, body {
   font-family: "Fredoka", sans-serif;
   font-optical-sizing: auto;

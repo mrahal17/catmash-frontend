@@ -133,6 +133,7 @@ button {
   cursor: pointer;
   transition: background 0.2s;
   font-weight: 600;
+  font-family: inherit;
 }
 
 button:hover {

@@ -6,7 +6,8 @@
       <div class="rank">2</div>
       <img [src]="secondSpot?.url" alt="Cat 2" class="cat-photo" />
       <div class="podium-info">
-        <div class="id">Chat {{ secondSpot?.id }}</div>
+        <div class="info id">Chat {{ secondSpot?.id }}</div>
+        <div class="info votes">Score : {{ secondSpot?.numberOfVotes }}pts</div>
       </div>
     </div>
 
@@ -14,7 +15,8 @@
       <div class="rank">1</div>
       <img [src]="firstSpot?.url" alt="Cat 1" class="cat-photo" />
       <div class="podium-info">
-        <div class="id">Chat {{ firstSpot?.id }}</div>
+        <div class="info id">Chat {{ firstSpot?.id }}</div>
+        <div class="info votes">Score : {{ firstSpot?.numberOfVotes }}pts</div>
       </div>
     </div>
 
@@ -22,7 +24,8 @@
       <div class="rank">3</div>
       <img [src]="thirdSpot?.url" alt="Cat 3" class="cat-photo" />
       <div class="podium-info">
-        <div class="id">Chat {{ thirdSpot?.id }}</div>
+        <div class="info id">Chat {{ thirdSpot?.id }}</div>
+        <div class="info votes">Score : {{ thirdSpot?.numberOfVotes }}pts</div>
       </div>
     </div>
   </div>
@@ -31,7 +34,8 @@
     <div class="cat-card" *ngFor="let cat of bottomSpots; let rank = index">
       <div class="rank">{{ rank + 4 }}</div>
       <img [src]="cat.url" alt="{{ cat.id }}" class="cat-photo" />
-      <div class="id">Chat {{ cat.id }}</div>
+      <div class="info id">Chat {{ cat.id }}</div>
+      <div class="info votes">Score : {{ cat.numberOfVotes }}pts</div>
     </div>
   </div>
 </div>

@@ -2,7 +2,7 @@
   display: block;
   background: url('../../assets/backgrounds/background-ranking.png');
   min-height: 100vh;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .ranking-title {

@@ -16,6 +16,7 @@ html, body {
 
 :root {
   --light-orange: #feb596;
+  --light-orange-transparent: #feb596c5;
   --light-green: rgb(121, 213, 109);;
 }
 

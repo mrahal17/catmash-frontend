@@ -1,44 +1,57 @@
 <app-header/>
+<div class="top-hidden-cat-counter">
+  <img src="assets/icons/hidden-cat-icon.png"/><strong>x{{ hiddenCatCount }}</strong> booster(s)
+</div>
 <h2 class="ranking-title">Classement général</h2>
-  <div class="ranking-container">
-    <img class="hidden-cat" src="assets/icons/hidden-cat-icon.png"/>
-    <div class="podium">
-      <div class="podium-spot second-spot">
-        <div class="rank">2</div>
-        <img [src]="secondSpot?.url" alt="Cat 2" class="cat-photo" />
-        <div class="podium-info">
-          <div class="info id">Chat {{ secondSpot?.id }}</div>
-          <div class="info votes">Score : {{ secondSpot?.numberOfVotes }}pts</div>
-        </div>
-      </div>
-
-      <div class="podium-spot first-spot">
-        <div class="rank">1</div>
-        <img [src]="firstSpot?.url" alt="Cat 1" class="cat-photo" />
-        <div class="podium-info">
-          <div class="info id">Chat {{ firstSpot?.id }}</div>
-          <div class="info votes">Score : {{ firstSpot?.numberOfVotes }}pts</div>
-        </div>
-      </div>
-
-      <div class="podium-spot third-spot">
-        <div class="rank">3</div>
-        <img [src]="thirdSpot?.url" alt="Cat 3" class="cat-photo" />
-        <div class="podium-info">
-          <div class="info id">Chat {{ thirdSpot?.id }}</div>
-          <div class="info votes">Score : {{ thirdSpot?.numberOfVotes }}pts</div>
-        </div>
+<div class="ranking-container">
+  <img *ngIf="showHiddenCat" (click)="findHiddenCat()" class="hidden-cat" src="assets/icons/hidden-cat-icon.png" [style.top.rem]="altitudeHiddenCat"/>
+  <div class="podium">
+    <div class="podium-spot second-spot">        <div class="rank">2</div>
+      <img [src]="secondSpot?.url" alt="Cat 2" class="cat-photo" />
+      <div class="podium-info">
+        <div class="info id">Chat {{ secondSpot?.id }}</div>
+        <div class="info votes">Score : {{ secondSpot?.numberOfVotes }}pts</div>
       </div>
     </div>
 
-    <div class="bottom">
-      <div class="cat-card" *ngFor="let cat of bottomSpots; let rank = index">
-        <div class="rank">{{ rank + 4 }}</div>
-        <img [src]="cat.url" alt="{{ cat.id }}" class="cat-photo" />
-        <div class="info id">Chat {{ cat.id }}</div>
-        <div class="info votes">Score : {{ cat.numberOfVotes }}pts</div>
+    <div class="podium-spot first-spot">
+      <div class="rank">1</div>
+      <img [src]="firstSpot?.url" alt="Cat 1" class="cat-photo" />
+      <div class="podium-info">
+        <div class="info id">Chat {{ firstSpot?.id }}</div>
+        <div class="info votes">Score : {{ firstSpot?.numberOfVotes }}pts</div>
       </div>
     </div>
+
+    <div class="podium-spot third-spot">
+      <div class="rank">3</div>
+      <img [src]="thirdSpot?.url" alt="Cat 3" class="cat-photo" />
+      <div class="podium-info">
+        <div class="info id">Chat {{ thirdSpot?.id }}</div>
+        <div class="info votes">Score : {{ thirdSpot?.numberOfVotes }}pts</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="cat-card" *ngFor="let cat of bottomSpots; let rank = index">
+      <div class="rank">{{ rank + 4 }}</div>
+      <img [src]="cat.url" alt="{{ cat.id }}" class="cat-photo" />
+      <div class="info id">Chat {{ cat.id }}</div>
+      <div class="info votes">Score : {{ cat.numberOfVotes }}pts</div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="showHiddenCatMessage">
+  <div class="popup">
+    <h2>Vous avez trouvé un chat caché !</h2>
+    <p>En récompense, un booster vous permettant de multiplier vos voix par 5 au cours d'un match de chats.</p>
+
+    <div class="buttons">
+      <button (click)="closePopUpWindow()">Fermer</button>
+    </div>
+  </div>
 </div>
 
 <app-bottom-tab [message]="bottomTabMessage" [redirectionPath]="bottomTabRedirectionPath"></app-bottom-tab>

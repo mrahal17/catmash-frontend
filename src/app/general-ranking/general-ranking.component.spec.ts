@@ -156,10 +156,10 @@ describe('GeneralRankingComponent', () => {
   });
 
   it('should set showHiddenCatMessage to true when calling findHiddenCat', () => {
-    component.showHiddenCat = false;
+    component.showHiddenCatMessage = false;
     component.findHiddenCat();
 
-    expect(component.showHiddenCat).toBeTrue();
+    expect(component.showHiddenCatMessage).toBeTrue();
   });
 
   it('should call incrementHiddenCatCount when calling findHiddenCat', () => {

@@ -5,7 +5,7 @@ import { CatService } from '../service/cat.service';
 import { Cat } from '../model/cat.model';
 import { HttpClientModule } from '@angular/common/http';
 import { HiddenCatService } from '../service/hidden-cat.service';
-import { HiddenCatCounterService } from '../service/hidden-cat-counter.service';
+import { BoosterCounterService } from '../service/booster-counter.service';
 import { By } from '@angular/platform-browser';
 
 const mockCats: Cat[] = [
@@ -20,19 +20,19 @@ describe('GeneralRankingComponent', () => {
   let fixture: ComponentFixture<GeneralRankingComponent>;
   let catServiceSpy: jasmine.SpyObj<CatService>;
   let hiddenCatServiceSpy: jasmine.SpyObj<HiddenCatService>;
-  let hiddenCatCounterServiceSpy: jasmine.SpyObj<HiddenCatCounterService>;
+  let boosterCounterServiceSpy: jasmine.SpyObj<BoosterCounterService>;
 
   beforeEach(async () => {
     const spy1 = jasmine.createSpyObj('CatService', ['getAllRanked']);
     const spy2 = jasmine.createSpyObj('HiddenCatService', ['getRandomAppearance', 'getRandomAltitude']);
-    const spy3 = jasmine.createSpyObj('HiddenCatCounterService', ['incrementHiddenCatCount']);
+    const spy3 = jasmine.createSpyObj('BoosterCounterService', ['incrementBoosterCount']);
 
     await TestBed.configureTestingModule({
       imports: [GeneralRankingComponent, HttpClientModule],
       providers: [
         { provide: CatService, useValue: spy1 },
         { provide: HiddenCatService, useValue: spy2 },
-        { provide: HiddenCatCounterService, useValue: spy3 }
+        { provide: BoosterCounterService, useValue: spy3 }
       ]
     }).compileComponents();
 
@@ -40,7 +40,7 @@ describe('GeneralRankingComponent', () => {
     component = fixture.componentInstance;
     catServiceSpy = TestBed.inject(CatService) as jasmine.SpyObj<CatService>;
     hiddenCatServiceSpy = TestBed.inject(HiddenCatService) as jasmine.SpyObj<HiddenCatService>;
-    hiddenCatCounterServiceSpy = TestBed.inject(HiddenCatCounterService) as jasmine.SpyObj<HiddenCatCounterService>;
+    boosterCounterServiceSpy = TestBed.inject(BoosterCounterService) as jasmine.SpyObj<BoosterCounterService>;
   });
 
   it('should create', () => {
@@ -162,10 +162,10 @@ describe('GeneralRankingComponent', () => {
     expect(component.showHiddenCatMessage).toBeTrue();
   });
 
-  it('should call incrementHiddenCatCount when calling findHiddenCat', () => {
+  it('should call incrementBoosterCount when calling findHiddenCat', () => {
     component.findHiddenCat();
 
-    expect(hiddenCatCounterServiceSpy.incrementHiddenCatCount).toHaveBeenCalled();
+    expect(boosterCounterServiceSpy.incrementBoosterCount).toHaveBeenCalled();
   });
 
     it('should display message window when showHiddenCatMessage is true', () => {

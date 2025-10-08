@@ -4,14 +4,14 @@ import { Cat } from '../model/cat.model';
 import { CatService } from '../service/cat.service';
 import { BottomTabComponent } from '../bottom-tab/bottom-tab.component';
 import { HeaderComponent } from '../header/header.component';
-import { HiddenCatCounterService } from '../service/hidden-cat-counter.service';
+import { BoosterCounterService } from '../service/booster-counter.service';
 import { HiddenCatService } from '../service/hidden-cat.service';
-import { HiddenCatCounter } from '../hidden-cat-counter/hidden-cat-counter.component';
+import { BoosterCounter } from '../booster-counter/booster.component';
 
 @Component({
   selector: 'app-general-ranking',
   standalone: true,
-  imports: [CommonModule, BottomTabComponent, HeaderComponent, HiddenCatCounter],
+  imports: [CommonModule, BottomTabComponent, HeaderComponent, BoosterCounter],
   templateUrl: './general-ranking.component.html',
   styleUrls: ['./general-ranking.component.css']
 })
@@ -30,7 +30,7 @@ export class GeneralRankingComponent {
   showHiddenCatMessage: boolean = false;
 
   constructor(private catService: CatService,
-    private hiddenCatCounterService: HiddenCatCounterService,
+    private boosterCounterService: BoosterCounterService,
     private hiddenCatService: HiddenCatService) {}
 
   ngOnInit() {
@@ -54,7 +54,7 @@ export class GeneralRankingComponent {
 
   findHiddenCat() {
     this.showHiddenCatMessage = true;
-    this.hiddenCatCounterService.incrementHiddenCatCount();
+    this.boosterCounterService.incrementBoosterCount();
   }
 
   closePopUpWindow() {

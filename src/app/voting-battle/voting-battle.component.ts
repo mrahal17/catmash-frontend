@@ -6,14 +6,14 @@ import { CatService } from '../service/cat.service';
 import { Router } from '@angular/router';
 import { BottomTabComponent } from '../bottom-tab/bottom-tab.component';
 import { HeaderComponent } from '../header/header.component';
-import { HiddenCatCounterService } from '../service/hidden-cat-counter.service';
+import { BoosterCounterService } from '../service/booster-counter.service';
 import { FormsModule } from '@angular/forms';
-import { HiddenCatCounter } from "../hidden-cat-counter/hidden-cat-counter.component";
+import { BoosterCounter } from "../booster-counter/booster.component";
 
 @Component({
   selector: 'app-voting-battle',
   standalone: true,
-  imports: [CommonModule, BottomTabComponent, HeaderComponent, FormsModule, HiddenCatCounter],
+  imports: [CommonModule, BottomTabComponent, HeaderComponent, FormsModule, BoosterCounter],
   templateUrl: './voting-battle.component.html',
   styleUrl: './voting-battle.component.css'
 })
@@ -32,7 +32,7 @@ export class VotingBattleComponent {
 
   constructor(private catService: CatService, private router: Router,
     private battleCounterService: BattleCounterService,
-    private hiddenCatCounterService: HiddenCatCounterService
+    private boosterCounterService: BoosterCounterService
   ) {}
 
   ngOnInit() {
@@ -92,7 +92,7 @@ export class VotingBattleComponent {
   registerBoosterVote(id: string) {
     this.catService.incrementNumberOfVotes(id, 5).subscribe(() => {
       this.battleCounterService.incrementBattleCount();
-      this.hiddenCatCounterService.decrementHiddenCatCount();
+      this.boosterCounterService.decrementBoosterCount();
       this.useBooster = false;
       this.handleNextBattle();
     });
@@ -108,11 +108,11 @@ export class VotingBattleComponent {
     this.setUpBattleSession();
   }
 
-  get hiddenCatCount() {
-    return this.hiddenCatCounterService.currentCount;
+  get boosterCount() {
+    return this.boosterCounterService.currentCount;
   }
 
   hasBoosters() {
-    return this.hiddenCatCount > 0;
+    return this.boosterCount > 0;
   }
 }

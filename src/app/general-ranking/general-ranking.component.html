@@ -1,5 +1,5 @@
 <app-header/>
-<app-hidden-cat-counter></app-hidden-cat-counter>
+<app-booster-counter/>
 <h2 class="ranking-title">Classement général</h2>
 <div class="ranking-container">
   <img *ngIf="showHiddenCat" (click)="findHiddenCat()" class="hidden-cat" src="assets/icons/hidden-cat-icon.png" [style.top.rem]="altitudeHiddenCat"/>
@@ -44,7 +44,7 @@
 <div class="overlay" *ngIf="showHiddenCatMessage">
   <div class="popup">
     <h2>Vous avez trouvé un chat caché !</h2>
-    <p>En récompense, un booster vous permettant de multiplier vos voix par 5 au cours d'un match de chats.</p>
+    <p>Vous remportez un booster vous permettant de multiplier vos voix par 5 au cours d'un match de chats.</p>
 
     <div class="buttons">
       <button (click)="closePopUpWindow()">Fermer</button>

@@ -18,16 +18,25 @@
   max-width: 1200px;
 }
 
-.battle-title {
+.info-top {
   font-weight: 700;
   margin-bottom: 1rem;
   margin-top: 0;
   text-align: center;
   border-radius: 20px;
   padding: 1rem;
-  background-color: var(--light-green);
   justify-self: center;
   width: fit-content;
+}
+
+.battle-title {
+  background-color: var(--light-green);
+}
+
+.hidden-cat-counter {
+  background-color: var(--light-yellow);
+  font-size: large;
+  font-weight: 400;
 }
 
 .battle-cards {

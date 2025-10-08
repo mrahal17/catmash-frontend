@@ -6,11 +6,12 @@ import { BottomTabComponent } from '../bottom-tab/bottom-tab.component';
 import { HeaderComponent } from '../header/header.component';
 import { HiddenCatCounterService } from '../service/hidden-cat-counter.service';
 import { HiddenCatService } from '../service/hidden-cat.service';
+import { HiddenCatCounter } from '../hidden-cat-counter/hidden-cat-counter.component';
 
 @Component({
   selector: 'app-general-ranking',
   standalone: true,
-  imports: [CommonModule, BottomTabComponent, HeaderComponent],
+  imports: [CommonModule, BottomTabComponent, HeaderComponent, HiddenCatCounter],
   templateUrl: './general-ranking.component.html',
   styleUrls: ['./general-ranking.component.css']
 })
@@ -49,10 +50,6 @@ export class GeneralRankingComponent {
   computeHiddenCatAppearance() {
     this.showHiddenCat = this.hiddenCatService.getRandomAppearance();
     if (this.showHiddenCat) this.altitudeHiddenCat = this.hiddenCatService.getRandomAltitude();
-  }
-
-  get hiddenCatCount() {
-    return this.hiddenCatCounterService.currentCount;
   }
 
   findHiddenCat() {

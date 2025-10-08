@@ -1,7 +1,5 @@
 <app-header/>
-<div class="top-hidden-cat-counter">
-  <img src="assets/icons/hidden-cat-icon.png"/><strong>x{{ hiddenCatCount }}</strong> booster(s)
-</div>
+<app-hidden-cat-counter></app-hidden-cat-counter>
 <h2 class="ranking-title">Classement général</h2>
 <div class="ranking-container">
   <img *ngIf="showHiddenCat" (click)="findHiddenCat()" class="hidden-cat" src="assets/icons/hidden-cat-icon.png" [style.top.rem]="altitudeHiddenCat"/>

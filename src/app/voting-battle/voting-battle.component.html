@@ -1,31 +1,37 @@
 <app-header/>
-  <h2 class="battle-title">Qui est le plus mignon de tous ?</h2>
+<div class="top-hidden-cat-counter">
+  <img src="assets/icons/hidden-cat-icon.png"/><strong>x{{ hiddenCatCount }}</strong> booster(s)
+</div>
+<h2 class="info-top battle-title">Qui est le plus mignon de tous ?</h2>
+<div class="info-top hidden-cat-counter">
+    <input type="checkbox" (ngModel)="true" />
+  Utiliser un booster de voix pour ce match</div>
 
-  <div class="battle-cards">
-    <div class="battle-container">   
-      <div class="battle-card left">
-        <div class="info">
-          <p class="name">Chat 1</p>
-        </div>
-        <div class="image-wrapper">
-          <img [src]="firstContender?.url" alt="Cat 1" />
-        </div>
-        <button class="vote-button" (click)="registerVote(firstContender?.id)">Voter</button>
-    </div>
-  </div> 
-
+<div class="battle-cards">
   <div class="battle-container">   
-    <div class="battle-card right">
-        <div class="info">
-          <p class="name">Chat 2</p>
-        </div>
-        <div class="image-wrapper">
-          <img [src]="secondContender?.url" alt="Cat 2" />
-        </div>
-        <button class="vote-button" (click)="registerVote(secondContender?.id)">Voter</button>
+    <div class="battle-card left">
+      <div class="info">
+        <p class="name">Chat 1</p>
       </div>
+      <div class="image-wrapper">
+        <img [src]="firstContender?.url" alt="Cat 1" />
+      </div>
+      <button class="vote-button" (click)="registerVote(firstContender?.id)">Voter</button>
+  </div>
+</div> 
+
+<div class="battle-container">   
+  <div class="battle-card right">
+      <div class="info">
+        <p class="name">Chat 2</p>
+      </div>
+      <div class="image-wrapper">
+        <img [src]="secondContender?.url" alt="Cat 2" />
+      </div>
+      <button class="vote-button" (click)="registerVote(secondContender?.id)">Voter</button>
     </div>
   </div>
+</div>
 
 <div class="overlay" *ngIf="showEndOfBattleSessionMessage">
   <div class="popup">

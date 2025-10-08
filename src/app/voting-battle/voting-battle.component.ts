@@ -6,11 +6,13 @@ import { CatService } from '../service/cat.service';
 import { Router } from '@angular/router';
 import { BottomTabComponent } from '../bottom-tab/bottom-tab.component';
 import { HeaderComponent } from '../header/header.component';
+import { HiddenCatCounterService } from '../service/hidden-cat-counter.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-voting-battle',
   standalone: true,
-  imports: [CommonModule, BottomTabComponent, HeaderComponent],
+  imports: [CommonModule, BottomTabComponent, HeaderComponent, FormsModule],
   templateUrl: './voting-battle.component.html',
   styleUrl: './voting-battle.component.css'
 })
@@ -25,7 +27,10 @@ export class VotingBattleComponent {
   bottomTabMessage: string = "Voir le classement des chats";
   bottomTabRedirectionPath: string = "/general-ranking";
 
-  constructor(private catService: CatService, private router: Router, private battleCounterService: BattleCounterService) {}
+  constructor(private catService: CatService, private router: Router,
+    private battleCounterService: BattleCounterService,
+    private hiddenCatCounterService: HiddenCatCounterService
+  ) {}
 
   ngOnInit() {
     this.setUpBattleSession();
@@ -81,5 +86,9 @@ export class VotingBattleComponent {
     this.showEndOfBattleSessionMessage = false;
     this.infiniteMode = true;
     this.setUpBattleSession();
+  }
+
+  get hiddenCatCount() {
+    return this.hiddenCatCounterService.currentCount;
   }
 }

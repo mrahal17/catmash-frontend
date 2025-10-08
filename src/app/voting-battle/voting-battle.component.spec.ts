@@ -7,6 +7,7 @@ import { Cat } from '../model/cat.model';
 import { HttpClientModule } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 import { BattleCounterService } from '../service/battle-counter.service';
+import { BoosterCounterService } from '../service/booster-counter.service';
 
 describe('VotingBattleComponent', () => {
   let component: VotingBattleComponent;
@@ -14,6 +15,7 @@ describe('VotingBattleComponent', () => {
   let catServiceSpy: jasmine.SpyObj<CatService>;
   let battleCounterServiceSpy: jasmine.SpyObj<BattleCounterService>;
   let routerSpy: jasmine.SpyObj<Router>;
+  let boosterCounterServiceSpy: jasmine.SpyObj<BoosterCounterService>;
 
   const mockCats: Cat[] = [
     { id: '1', url: 'url1', numberOfVotes: 10 },
@@ -25,13 +27,15 @@ describe('VotingBattleComponent', () => {
     catServiceSpy = jasmine.createSpyObj('CatService', ['getAll', 'incrementNumberOfVotes']);
     battleCounterServiceSpy = jasmine.createSpyObj('BattleCounterService', ['incrementBattleCount']);
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+    boosterCounterServiceSpy = jasmine.createSpyObj('BoosterCounterService', ['decrementBoosterCount']);
 
     await TestBed.configureTestingModule({
       imports: [VotingBattleComponent, HttpClientModule],
       providers: [
         { provide: CatService, useValue: catServiceSpy },
         { provide: BattleCounterService, useValue: battleCounterServiceSpy },
-        { provide: Router, useValue: routerSpy }
+        { provide: Router, useValue: routerSpy },
+        { provide: BoosterCounterService, useValue: boosterCounterServiceSpy }
       ]
     }).compileComponents();
 
@@ -137,20 +141,57 @@ describe('VotingBattleComponent', () => {
     expect(spyRegister).toHaveBeenCalledWith(component.secondContender?.id);
   });
 
-  it('should call incrementNumberOfVotes when calling registerVote', () => {
+  it('should call incrementNumberOfVotes when calling registerSimpleVote', () => {
     const mockId = '123';
     catServiceSpy.incrementNumberOfVotes.and.returnValue(of(''));
 
-    component.registerVote(mockId);
+    component.registerSimpleVote(mockId);
 
     expect(catServiceSpy.incrementNumberOfVotes).toHaveBeenCalledWith(mockId);
   });
 
-  it('should call incrementBattleCount when calling registerVote', () => {
+  it('should call incrementNumberOfVotes when calling registerBoosterVote', () => {
     const mockId = '123';
     catServiceSpy.incrementNumberOfVotes.and.returnValue(of(''));
 
-    component.registerVote(mockId);
+    component.registerBoosterVote(mockId);
+
+    expect(catServiceSpy.incrementNumberOfVotes).toHaveBeenCalledWith(mockId, 5);
+  });
+
+  it('should set useBooster to false when calling registerBoosterVote', () => {
+    const mockId = '123';
+    catServiceSpy.incrementNumberOfVotes.and.returnValue(of(''));
+    component.useBooster = true;
+
+    component.registerBoosterVote(mockId);
+
+    expect(component.useBooster).toBeFalse();
+  });
+
+  it('should call BoosterCounterService when calling registerBoosterVote', () => {
+    const mockId = '123';
+    catServiceSpy.incrementNumberOfVotes.and.returnValue(of(''));
+
+    component.registerBoosterVote(mockId);
+
+    expect(boosterCounterServiceSpy.decrementBoosterCount).toHaveBeenCalled();
+  });
+
+  it('should call incrementBattleCount when calling registerSimpleVote', () => {
+    const mockId = '123';
+    catServiceSpy.incrementNumberOfVotes.and.returnValue(of(''));
+
+    component.registerSimpleVote(mockId);
+
+    expect(battleCounterServiceSpy.incrementBattleCount).toHaveBeenCalled();
+  });
+
+  it('should call incrementBattleCount when calling registerBoosterVote', () => {
+    const mockId = '123';
+    catServiceSpy.incrementNumberOfVotes.and.returnValue(of(''));
+
+    component.registerBoosterVote(mockId);
 
     expect(battleCounterServiceSpy.incrementBattleCount).toHaveBeenCalled();
   });

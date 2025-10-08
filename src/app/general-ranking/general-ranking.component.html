@@ -1,8 +1,10 @@
 <app-header/>
+<app-booster-counter/>
 <h2 class="ranking-title">Classement général</h2>
 <div class="ranking-container">
+  <img *ngIf="showHiddenCat" (click)="findHiddenCat()" class="hidden-cat" src="assets/icons/hidden-cat-icon.png" [style]="randomPositionStyleHiddenCat"/>
   <div class="podium">
-    <div class="podium-spot second-spot">
+    <div class="podium-spot second-spot">        
       <div class="rank">2</div>
       <img [src]="secondSpot?.url" alt="Cat 2" class="cat-photo" />
       <div class="podium-info">
@@ -36,6 +38,17 @@
       <img [src]="cat.url" alt="{{ cat.id }}" class="cat-photo" />
       <div class="info id">Chat {{ cat.id }}</div>
       <div class="info votes">Score : {{ cat.numberOfVotes }}pts</div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="showHiddenCatMessage">
+  <div class="popup">
+    <h2>Vous avez trouvé un chat caché !</h2>
+    <p>Vous remportez un booster vous permettant de multiplier vos voix par 5 au cours d'un match de chats.</p>
+
+    <div class="buttons">
+      <button (click)="closePopUpWindow()">Fermer</button>
     </div>
   </div>
 </div>

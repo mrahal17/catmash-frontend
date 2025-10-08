@@ -5,6 +5,27 @@
   padding: 1rem;
 }
 
+button {
+  background-color: #ffb74d;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+button:hover {
+  cursor: url('../../assets/cursors/cursor-click.png'), pointer;
+  background-color: #ffa726;
+}
+
+.ranking-wrapper {
+  position: relative;
+  overflow: visible;
+}
+
 .ranking-title {
   font-weight: 700;
   margin-bottom: 1rem;
@@ -18,6 +39,8 @@
 }
 
 .ranking-container {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,7 +63,7 @@
 .podium-info {
   padding: 8px;
   border-radius: 12px;
-  background-color: #fee8ac;
+  background-color: var(--light-yellow);
   width: fit-content;
   max-width: 25rem;
   justify-self: center;
@@ -127,4 +150,22 @@
   font-weight: bold;
   color: #555;
   margin-bottom: 0.5rem;
+}
+
+.hidden-cat {
+  position: absolute;
+  left: -22px;
+  top: 20px;
+  border-radius: 10px;
+  z-index: 0;
+}
+
+.ranking-container > *:not(.hidden-cat) {
+  position: relative;
+  z-index: 1;
+}
+
+.hidden-cat:hover {
+  transform: scale(1.1) rotate(10deg);
+  cursor: url('../../assets/cursors/cursor-click.png'), pointer;
 }

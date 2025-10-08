@@ -4,6 +4,9 @@ import { GeneralRankingComponent } from './general-ranking.component';
 import { CatService } from '../service/cat.service';
 import { Cat } from '../model/cat.model';
 import { HttpClientModule } from '@angular/common/http';
+import { HiddenCatService } from '../service/hidden-cat.service';
+import { BoosterCounterService } from '../service/booster-counter.service';
+import { By } from '@angular/platform-browser';
 
 const mockCats: Cat[] = [
   { id: '2', url: 'url2', numberOfVotes: 1 },
@@ -16,30 +19,77 @@ describe('GeneralRankingComponent', () => {
   let component: GeneralRankingComponent;
   let fixture: ComponentFixture<GeneralRankingComponent>;
   let catServiceSpy: jasmine.SpyObj<CatService>;
+  let hiddenCatServiceSpy: jasmine.SpyObj<HiddenCatService>;
+  let boosterCounterServiceSpy: jasmine.SpyObj<BoosterCounterService>;
 
   beforeEach(async () => {
-    const spy = jasmine.createSpyObj('CatService', ['getAllRanked']);
+    const spy1 = jasmine.createSpyObj('CatService', ['getAllRanked']);
+    const spy2 = jasmine.createSpyObj('HiddenCatService', ['getRandomAppearance', 'getRandomPositionStyle']);
+    const spy3 = jasmine.createSpyObj('BoosterCounterService', ['incrementBoosterCount']);
 
     await TestBed.configureTestingModule({
       imports: [GeneralRankingComponent, HttpClientModule],
       providers: [
-        { provide: CatService, useValue: spy }
+        { provide: CatService, useValue: spy1 },
+        { provide: HiddenCatService, useValue: spy2 },
+        { provide: BoosterCounterService, useValue: spy3 }
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(GeneralRankingComponent);
     component = fixture.componentInstance;
     catServiceSpy = TestBed.inject(CatService) as jasmine.SpyObj<CatService>;
+    hiddenCatServiceSpy = TestBed.inject(HiddenCatService) as jasmine.SpyObj<HiddenCatService>;
+    boosterCounterServiceSpy = TestBed.inject(BoosterCounterService) as jasmine.SpyObj<BoosterCounterService>;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call getAllRanked method of service on init', () => {
+  it('should call loadCats on init', () => {
     catServiceSpy.getAllRanked.and.returnValue(of(mockCats));
+    const spyLoadCats = spyOn(component, 'loadCats');
+
     fixture.detectChanges();
-    expect(catServiceSpy.getAllRanked).toHaveBeenCalledTimes(1);
+    expect(spyLoadCats).toHaveBeenCalled();
+  });
+
+  it('should call getAllRanked method of service when calling loadCats', () => {
+    catServiceSpy.getAllRanked.and.returnValue(of(mockCats));
+    
+    component.loadCats();
+    expect(catServiceSpy.getAllRanked).toHaveBeenCalled();
+  });
+
+  it('should call computeHiddenCatAppearance on init', () => {
+    catServiceSpy.getAllRanked.and.returnValue(of(mockCats));
+    const spyComputeAppearance = spyOn(component, 'computeHiddenCatAppearance');
+
+    fixture.detectChanges();
+    expect(spyComputeAppearance).toHaveBeenCalled();
+  });
+
+  it('should not show Easter egg hidden cat if showHiddenCat is false', () => {
+    catServiceSpy.getAllRanked.and.returnValue(of(mockCats));
+    hiddenCatServiceSpy.getRandomAppearance.and.returnValue(false);
+
+    fixture.detectChanges();
+    const component = fixture.nativeElement as HTMLElement;
+
+    const hiddenCatIcon = component.querySelector('.hidden-cat');
+    expect(hiddenCatIcon).toBeNull(); 
+  });
+
+  it('should show Easter egg hidden cat if showHiddenCat is true', () => {
+    catServiceSpy.getAllRanked.and.returnValue(of(mockCats));
+    hiddenCatServiceSpy.getRandomAppearance.and.returnValue(true);
+
+    fixture.detectChanges();
+    const component = fixture.nativeElement as HTMLElement;
+
+    const hiddenCatIcon = component.querySelector('.hidden-cat');
+    expect(hiddenCatIcon).not.toBeNull(); 
   });
 
   it('should display top 3 cats in podium section', () => {
@@ -103,5 +153,43 @@ describe('GeneralRankingComponent', () => {
 
     const thirdSpotCatId = idDiv?.textContent?.trim();
     expect(thirdSpotCatId).toBe('Chat ' + mockCats[2]['id']);
+  });
+
+  it('should set showHiddenCatMessage to true when calling findHiddenCat', () => {
+    component.showHiddenCatMessage = false;
+    component.findHiddenCat();
+
+    expect(component.showHiddenCatMessage).toBeTrue();
+  });
+
+  it('should call incrementBoosterCount when calling findHiddenCat', () => {
+    component.findHiddenCat();
+
+    expect(boosterCounterServiceSpy.incrementBoosterCount).toHaveBeenCalled();
+  });
+
+    it('should display message window when showHiddenCatMessage is true', () => {
+    catServiceSpy.getAllRanked.and.returnValue(of(mockCats));
+    fixture.detectChanges();
+
+    component.showHiddenCatMessage = true;
+    fixture.detectChanges();
+
+    const overlay = fixture.debugElement.query(By.css('.overlay'));
+    expect(overlay).toBeTruthy();
+  });
+
+  it('should set showHiddenCatMessage to false when calling closePopUpWindow', () => {
+    component.showHiddenCatMessage = true;
+    
+    component.closePopUpWindow();
+    expect(component.showHiddenCatMessage).toBeFalse();
+  });
+
+  it('should set showHiddenCat to false when calling closePopUpWindow', () => {
+    component.showHiddenCat = true;
+    
+    component.closePopUpWindow();
+    expect(component.showHiddenCat).toBeFalse();
   });
 });

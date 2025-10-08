@@ -62,5 +62,6 @@ export class GeneralRankingComponent {
 
   closePopUpWindow() {
     this.showHiddenCatMessage = false;
+    this.showHiddenCat = false;
   }
 }

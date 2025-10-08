@@ -178,4 +178,18 @@ describe('GeneralRankingComponent', () => {
     const overlay = fixture.debugElement.query(By.css('.overlay'));
     expect(overlay).toBeTruthy();
   });
+
+  it('should set showHiddenCatMessage to false when calling closePopUpWindow', () => {
+    component.showHiddenCatMessage = true;
+    
+    component.closePopUpWindow();
+    expect(component.showHiddenCatMessage).toBeFalse();
+  });
+
+  it('should set showHiddenCat to false when calling closePopUpWindow', () => {
+    component.showHiddenCat = true;
+    
+    component.closePopUpWindow();
+    expect(component.showHiddenCat).toBeFalse();
+  });
 });

@@ -24,8 +24,8 @@ describe('GeneralRankingComponent', () => {
 
   beforeEach(async () => {
     const spy1 = jasmine.createSpyObj('CatService', ['getAllRanked']);
-    const spy2 = jasmine.createSpyObj('HiddenCatService', ['getRandomAppearance']);
-    const spy3 = jasmine.createSpyObj('HiddenCatCounterService', ['incrementincrementHiddenCatCount']);
+    const spy2 = jasmine.createSpyObj('HiddenCatService', ['getRandomAppearance', 'getRandomAltitude']);
+    const spy3 = jasmine.createSpyObj('HiddenCatCounterService', ['incrementHiddenCatCount']);
 
     await TestBed.configureTestingModule({
       imports: [GeneralRankingComponent, HttpClientModule],
@@ -77,7 +77,7 @@ describe('GeneralRankingComponent', () => {
     fixture.detectChanges();
     const component = fixture.nativeElement as HTMLElement;
 
-    const hiddenCatIcon = component.querySelector('.podium-spot.first-spot');
+    const hiddenCatIcon = component.querySelector('.hidden-cat');
     expect(hiddenCatIcon).toBeNull(); 
   });
 
@@ -88,7 +88,7 @@ describe('GeneralRankingComponent', () => {
     fixture.detectChanges();
     const component = fixture.nativeElement as HTMLElement;
 
-    const hiddenCatIcon = component.querySelector('.podium-spot.first-spot');
+    const hiddenCatIcon = component.querySelector('.hidden-cat');
     expect(hiddenCatIcon).not.toBeNull(); 
   });
 
@@ -169,7 +169,7 @@ describe('GeneralRankingComponent', () => {
   });
 
     it('should display message window when showHiddenCatMessage is true', () => {
-    catServiceSpy.getAll.and.returnValue(of(mockCats));
+    catServiceSpy.getAllRanked.and.returnValue(of(mockCats));
     fixture.detectChanges();
 
     component.showHiddenCatMessage = true;

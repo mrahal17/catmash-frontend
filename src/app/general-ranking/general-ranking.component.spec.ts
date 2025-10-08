@@ -24,7 +24,7 @@ describe('GeneralRankingComponent', () => {
 
   beforeEach(async () => {
     const spy1 = jasmine.createSpyObj('CatService', ['getAllRanked']);
-    const spy2 = jasmine.createSpyObj('HiddenCatService', ['getRandomAppearance', 'getRandomPosition']);
+    const spy2 = jasmine.createSpyObj('HiddenCatService', ['getRandomAppearance', 'getRandomPositionStyle']);
     const spy3 = jasmine.createSpyObj('BoosterCounterService', ['incrementBoosterCount']);
 
     await TestBed.configureTestingModule({

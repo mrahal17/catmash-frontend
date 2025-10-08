@@ -11,6 +11,12 @@ export class HiddenCatCounterService {
     this.hiddenCatCountSubject.next(currentCount + 1);
   }
 
+  decrementHiddenCatCount() {
+    const currentCount = this.hiddenCatCountSubject.value;
+    if (currentCount > 0) this.hiddenCatCountSubject.next(currentCount - 1);
+    else console.warn('Tried to decrement with zero count');
+  }
+
   get currentCount(): number {
     return this.hiddenCatCountSubject.value;
   }

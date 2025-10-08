@@ -1,11 +1,9 @@
 <app-header/>
-<div class="top-hidden-cat-counter">
-  <img src="assets/icons/hidden-cat-icon.png"/><strong>x{{ hiddenCatCount }}</strong> booster(s)
+<app-hidden-cat-counter/>
+<h2 class="info-battle battle-title">Qui est le plus mignon de tous ?</h2>
+<div class="info-battle boosters" [ngClass]="{ 'disabled-text': !hasBoosters() }">
+  <input type="checkbox" [disabled]="!hasBoosters()" [(ngModel)]="useBooster" />Utiliser un booster de voix pour ce match
 </div>
-<h2 class="info-top battle-title">Qui est le plus mignon de tous ?</h2>
-<div class="info-top hidden-cat-counter">
-    <input type="checkbox" (ngModel)="true" />
-  Utiliser un booster de voix pour ce match</div>
 
 <div class="battle-cards">
   <div class="battle-container">   

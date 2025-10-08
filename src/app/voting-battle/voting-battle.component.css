@@ -18,7 +18,7 @@
   max-width: 1200px;
 }
 
-.info-top {
+.info-battle {
   font-weight: 700;
   margin-bottom: 1rem;
   margin-top: 0;
@@ -33,10 +33,21 @@
   background-color: var(--light-green);
 }
 
-.hidden-cat-counter {
+.boosters {
   background-color: var(--light-yellow);
   font-size: large;
   font-weight: 400;
+  padding: 10px;
+}
+
+.disabled-text {
+  color: gray;
+  opacity: 0.75;
+  user-select: none;
+}
+
+input[type="checkbox"]:hover {
+  cursor: url('../../assets/cursors/cursor-point.png'), pointer;
 }
 
 .battle-cards {

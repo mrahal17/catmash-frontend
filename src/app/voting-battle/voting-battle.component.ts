@@ -8,11 +8,12 @@ import { BottomTabComponent } from '../bottom-tab/bottom-tab.component';
 import { HeaderComponent } from '../header/header.component';
 import { HiddenCatCounterService } from '../service/hidden-cat-counter.service';
 import { FormsModule } from '@angular/forms';
+import { HiddenCatCounter } from "../hidden-cat-counter/hidden-cat-counter.component";
 
 @Component({
   selector: 'app-voting-battle',
   standalone: true,
-  imports: [CommonModule, BottomTabComponent, HeaderComponent, FormsModule],
+  imports: [CommonModule, BottomTabComponent, HeaderComponent, FormsModule, HiddenCatCounter],
   templateUrl: './voting-battle.component.html',
   styleUrl: './voting-battle.component.css'
 })
@@ -23,6 +24,8 @@ export class VotingBattleComponent {
   contenders: Cat[] = [];
   showEndOfBattleSessionMessage: boolean = false;
   infiniteMode: boolean = false;
+
+  useBooster: boolean = false;
 
   bottomTabMessage: string = "Voir le classement des chats";
   bottomTabRedirectionPath: string = "/general-ranking";
@@ -71,10 +74,27 @@ export class VotingBattleComponent {
   }
 
   registerVote(id: string | undefined) {
-    if (!id) return;
+    if (id) {
+      if (this.useBooster) this.registerBoosterVote(id);
+      else this.registerSimpleVote(id);
+    } else {
+      console.warn('No id provided when voting.')
+    }
+  }
+
+  registerSimpleVote(id: string) {
     this.catService.incrementNumberOfVotes(id).subscribe(() => {
         this.battleCounterService.incrementBattleCount();
         this.handleNextBattle();
+    });
+  }
+
+  registerBoosterVote(id: string) {
+    this.catService.incrementNumberOfVotes(id).subscribe(() => {
+      this.battleCounterService.incrementBattleCount();
+      this.hiddenCatCounterService.decrementHiddenCatCount();
+      this.useBooster = false;
+      this.handleNextBattle();
     });
   }
 
@@ -90,5 +110,9 @@ export class VotingBattleComponent {
 
   get hiddenCatCount() {
     return this.hiddenCatCounterService.currentCount;
+  }
+
+  hasBoosters() {
+    return this.hiddenCatCount > 0;
   }
 }

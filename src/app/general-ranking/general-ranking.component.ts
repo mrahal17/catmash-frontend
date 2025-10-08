@@ -26,7 +26,7 @@ export class GeneralRankingComponent {
   bottomTabRedirectionPath: string = "/voting-battle";
 
   showHiddenCat: boolean = false;
-  altitudeHiddenCat: number = 0;
+  randomPositionStyleHiddenCat: string = "";
   showHiddenCatMessage: boolean = false;
 
   constructor(private catService: CatService,
@@ -49,7 +49,7 @@ export class GeneralRankingComponent {
 
   computeHiddenCatAppearance() {
     this.showHiddenCat = this.hiddenCatService.getRandomAppearance();
-    if (this.showHiddenCat) this.altitudeHiddenCat = this.hiddenCatService.getRandomAltitude();
+    if (this.showHiddenCat) this.randomPositionStyleHiddenCat = this.hiddenCatService.getRandomPositionStyle();
   }
 
   findHiddenCat() {

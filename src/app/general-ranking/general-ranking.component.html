@@ -2,9 +2,10 @@
 <app-booster-counter/>
 <h2 class="ranking-title">Classement général</h2>
 <div class="ranking-container">
-  <img *ngIf="showHiddenCat" (click)="findHiddenCat()" class="hidden-cat" src="assets/icons/hidden-cat-icon.png" [style.top.rem]="altitudeHiddenCat"/>
+  <img *ngIf="showHiddenCat" (click)="findHiddenCat()" class="hidden-cat" src="assets/icons/hidden-cat-icon.png" [style]="randomPositionStyleHiddenCat"/>
   <div class="podium">
-    <div class="podium-spot second-spot">        <div class="rank">2</div>
+    <div class="podium-spot second-spot">        
+      <div class="rank">2</div>
       <img [src]="secondSpot?.url" alt="Cat 2" class="cat-photo" />
       <div class="podium-info">
         <div class="info id">Chat {{ secondSpot?.id }}</div>

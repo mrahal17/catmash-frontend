@@ -20,8 +20,10 @@ export class CatService {
     return this.http.get<Cat[]>(this.apiUrl + '/ranked');
   }
 
-  incrementNumberOfVotes(id: String): Observable<string> {
+  incrementNumberOfVotes(id: string, increment: number = 1): Observable<string> {
     const url = `${this.apiUrl}/${id}/number-of-votes`;
-    return this.http.patch(url, null, { responseType: 'text' });
+    const body = { increment: increment };
+
+    return this.http.patch(url, body, { responseType: 'text' });
   }
 }

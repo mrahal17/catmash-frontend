@@ -156,7 +156,7 @@ describe('VotingBattleComponent', () => {
 
     component.registerBoosterVote(mockId);
 
-    expect(catServiceSpy.incrementNumberOfVotes).toHaveBeenCalledWith(mockId);
+    expect(catServiceSpy.incrementNumberOfVotes).toHaveBeenCalledWith(mockId, 5);
   });
 
   it('should set useBooster to false when calling registerBoosterVote', () => {

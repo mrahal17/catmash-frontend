@@ -8,7 +8,7 @@ describe('CatService', () => {
   let catService: CatService;
   
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'patch']);
     catService = new CatService(httpClientSpy);
   });
 
@@ -22,11 +22,12 @@ describe('CatService', () => {
     catService.getAll().subscribe({
       next: (cats) => {
         expect(cats).toEqual(expectedCats);
+        expect(httpClientSpy.get.calls.count()).toBe(1);
         done();
       },
       error: done.fail,
     });
-    expect(httpClientSpy.get.calls.count()).withContext('one call').toBe(1);
+
   });
 
   it('should return all cats ranked', (done: DoneFn) => {
@@ -39,10 +40,29 @@ describe('CatService', () => {
     catService.getAllRanked().subscribe({
       next: (cats) => {
         expect(cats).toEqual(expectedCatsRanked);
+        expect(httpClientSpy.get.calls.count()).toBe(1);
         done();
       },
       error: done.fail,
     });
-    expect(httpClientSpy.get.calls.count()).withContext('one call').toBe(1);
+  });
+
+  it('should increment number of votes for a cat', (done: DoneFn) => {
+    const catId = '123';
+    const increment = 5;
+    const expectedMessage = 'Number of votes updated by 5.';
+
+    httpClientSpy.patch.and.returnValue(of(expectedMessage));
+
+    catService.incrementNumberOfVotes(catId, increment).subscribe({
+      next: (message) => {
+        expect(message).toEqual(expectedMessage);
+
+        expect(httpClientSpy.patch.calls.count()).toBe(1);
+        expect(httpClientSpy.patch.calls.argsFor(0)[1]).toEqual({ increment: increment });
+        done();
+      },
+      error: done.fail,
+    });
   });
 });

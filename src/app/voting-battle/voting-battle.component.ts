@@ -90,7 +90,7 @@ export class VotingBattleComponent {
   }
 
   registerBoosterVote(id: string) {
-    this.catService.incrementNumberOfVotes(id).subscribe(() => {
+    this.catService.incrementNumberOfVotes(id, 5).subscribe(() => {
       this.battleCounterService.incrementBattleCount();
       this.hiddenCatCounterService.decrementHiddenCatCount();
       this.useBooster = false;

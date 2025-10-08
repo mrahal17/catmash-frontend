@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class HiddenCatCounterService {
-  private hiddenCatCountSubject = new BehaviorSubject<number>(0);
+  private hiddenCatCountSubject = new BehaviorSubject<number>(3);
   hiddenCatCount = this.hiddenCatCountSubject.asObservable();
 
   incrementHiddenCatCount() {
